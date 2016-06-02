@@ -1,23 +1,12 @@
 # x(-1 to 1) = East to West
 # y(-1 to 1) = South to North
-
-def clean_input(user_input)
-  if user_input.include? ","
-    cleaned_input = user_input.split(",")
-  elsif user_input.include? " "
-    cleaned_input = user_input.split(" ")
-  end
-  cleaned_input
-end
-
-def can_be_int?(input)
-  if !!/\A\d+\z/.match(input)
-    return true
-  else
-    return false
-  end
-end
-
+# def can_be_int?(input)
+#   if !!/\A\d+\z/.match(input)
+#     return true
+#   else
+#     return false
+#   end
+# end
 
 class Plateau
   attr_accessor(:x, :y)
@@ -82,7 +71,7 @@ end
 class MissionControl
   attr_accessor :rover_count
   def initialize(plateau_coordinates)
-    @mars = Plateau.new(plateau_coordinates)
+    @mars = Plateau.new(clean_input(plateau_coordinates))
 
     puts "How many rovers are on Mars? "
     rover_count = gets.chomp.to_i
@@ -96,7 +85,7 @@ class MissionControl
       @rovers << rover
     end
     user_input = nil
-    until user_input = "Q"
+    until user_input == "Q"
       list_rovers
       puts "Type in a rover to send instruction to or type Q to quit: "
       user_input = gets.chomp.upcase
@@ -160,13 +149,21 @@ class MissionControl
       return true
     end
   end
+  def clean_input(user_input)
+    if user_input.include? ","
+      cleaned_input = user_input.split(",")
+    elsif user_input.include? " "
+      cleaned_input = user_input.split(" ")
+    end
+    cleaned_input
+  end
 
 end
 
 puts "Come in Mission Control... Initializing connection..."
 puts "Mission Control, Please input Martian plateau size in x,y integer format: "
 user_input = gets.chomp
-houston = MissionControl.new(clean_input(user_input))
+houston = MissionControl.new(user_input)
 
 
 
