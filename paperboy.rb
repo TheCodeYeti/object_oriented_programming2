@@ -3,9 +3,12 @@ class Paperboy
   attr_accessor :experience, :side
   attr_reader :earnings
 
-  def initialize(name, quota = 0, experience = 0, side = "even", earnings = 0 )
-
-
+  def initialize(name, side = "even", quota = 50)
+    @name = name
+    @quota = quota
+    @experience = 0
+    @earnings = 0
+    @side = side
   end
   def quota
     @quota
