@@ -41,7 +41,7 @@ class Paperboy
     papers_above_quota = papers_delivered - papers_within_quota
     @earnings += (papers_within_quota * 0.25).to_f
     @earnings += (papers_above_quota * 0.50).to_f
-    @earnings -= (quota_missed * 2.00).to_f
+    @earnings -= ((quota_missed * 2.00), 2.00).min.to_f
     @earnings
   end
   def report
