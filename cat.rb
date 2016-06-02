@@ -7,3 +7,6 @@ class Cat
     @meal_time = meal_time
   end
 end
+
+latte = Cat.new("Latte", "Chicken", "12")
+harley = Cat.new("Harley", "Whatever is in #{latte.name}'s bowl", "8")
